@@ -10,6 +10,7 @@ from django.utils.encoding import force_bytes
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from rest_framework.authtoken.models import Token
+from django.http import JsonResponse
 
 # for sending email
 from django.core.mail import EmailMultiAlternatives
@@ -101,8 +102,19 @@ class UserLoginApiView(APIView):
 
 
 
+# class UserLogoutView(APIView):
+#     def get(self, request):
+#         request.user.auth_token.delete()
+#         logout(request)
+#         return redirect('login')
+
+
+
 class UserLogoutView(APIView):
     def get(self, request):
-        request.user.auth_token.delete()
-        logout(request)
-        return redirect('login')
+        try:
+            request.user.auth_token.delete()
+            logout(request)
+            return JsonResponse({'success': True})
+        except Exception as e:
+            return JsonResponse({'success': False})
