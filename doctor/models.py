@@ -45,7 +45,7 @@ class Review(models.Model):
     doctor = models.ForeignKey(Doctor, on_delete = models.CASCADE)
     body = models.TextField()
     created = models.DateTimeField(auto_now_add = True)
-    rating = models.CharField(choices = STAR_CHOICES, max_length = 10)
+    rating = models.CharField(choices = STAR_CHOICES, max_length = 10 , blank = True, null = True)
     
     def __str__(self):
         return f"Patient : {self.reviewer.user.first_name} ; Doctor {self.doctor.user.first_name}"

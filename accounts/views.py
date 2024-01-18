@@ -17,18 +17,16 @@ from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.shortcuts import redirect
 
-# class PatientViewset(viewsets.ModelViewSet):
-#     # queryset = models.Patient.objects.all()
-#     serializer_class = serializers.PatientSerializer
-
-#     def get_queryset(self):
-#         # Filter the queryset to only include patients where is_patient is True
-#         return models.Patient.objects.filter(is_patient=True)
-
-
 class PatientViewset(viewsets.ModelViewSet):
+    queryset = models.Patient.objects.all()
     serializer_class = serializers.PatientSerializer
-    queryset = models.Patient.objects.filter(is_patient=True)
+
+
+
+
+# class PatientViewset(viewsets.ModelViewSet):
+#     serializer_class = serializers.PatientSerializer
+#     queryset = models.Patient.objects.filter(is_patient=True)
 
 class UserRegistrationApiView(APIView):
     serializer_class = serializers.RegistrationSerializer

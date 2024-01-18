@@ -45,3 +45,22 @@ class ReviewViewset(viewsets.ModelViewSet):
     
     queryset = models.Review.objects.all()
     serializer_class = serializers.ReviewSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['doctor__id']
+
+
+# class ReviewViewset(viewsets.ModelViewSet):
+#     queryset = models.Review.objects.all()
+#     serializer_class = serializers.ReviewSerializer
+#     filter_backends = [filters.SearchFilter]
+#     search_fields = ['doctor__id']  # Assuming 'doctor' is a ForeignKey in the Review model
+    
+#     def get_queryset(self):
+#         queryset = models.Review.objects.all()
+
+#         # If you have a doctor_id parameter in the request, filter by that doctor
+#         doctor_id = self.request.query_params.get('doctor_id', None)
+#         if doctor_id is not None:
+#             queryset = queryset.filter(doctor__id=doctor_id)
+
+#         return queryset

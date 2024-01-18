@@ -9,6 +9,10 @@ class SpecializationAdmin(admin.ModelAdmin):
 class DesignationAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',), }
 
+
+    
+
 admin.site.register(models.Designation,DesignationAdmin)
 admin.site.register(models.Specialization,SpecializationAdmin)
 admin.site.register(models.Doctor)
+admin.site.register(models.Review)
